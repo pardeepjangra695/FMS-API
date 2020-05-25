@@ -7,21 +7,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.trainer.FMS_API.Model.StateModel;
-import com.trainer.FMS_API.Repo.StateRepo;
+import com.trainer.FMS_API.Model.MCDModel;
+import com.trainer.FMS_API.Repo.MCDRepo;
 
 @Service
-public class StateService {
+public class MCDService {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	StateRepo stateRepo;
+	MCDRepo mCDRepo;
 
-	public String addState(StateModel stateModel) {
+	public String addMCD(MCDModel mCDModel) {
 		try {
 
-			int state = stateRepo.addState(stateModel);
+			int state = mCDRepo.addMCD(mCDModel);
 			if (state == 1)
 				return "Success";
 		} catch (Exception e) {
@@ -31,37 +31,39 @@ public class StateService {
 		return "Fail";
 	}
 
-	public String updateState(StateModel stateModel) {
+	public String updateMCD(MCDModel mCDModel) {
 		try {
 
-			int state = stateRepo.updateState(stateModel);
+			int state = mCDRepo.updateMCD(mCDModel);
 			if (state == 1)
 				return "Success";
 		} catch (Exception e) {
-			log.info("Exception found in add user ={}", e.getMessage());
+			log.info("Exception found in update user ={}", e.getMessage());
 		}
+
 		return "Fail";
 	}
 
-	public String deleteState(int id) {
+	public String deleteMCD(String id) {
 		try {
 
-			int state = stateRepo.deleteState(id);
+			int state = mCDRepo.deleteMCD(id);
 			if (state == 1)
 				return "Success";
 		} catch (Exception e) {
-			log.info("Exception found in add user ={}", e.getMessage());
+			log.info("Exception found in delete user ={}", e.getMessage());
 		}
+
 		return "Fail";
 	}
 
-	public List<StateModel> getAllState() {
+	public List<MCDModel> getAllDetails() {
 		try {
-			List<StateModel> list = stateRepo.getAllState();
-			return list;
+			return mCDRepo.getAllMCD();
 		} catch (Exception e) {
-			log.info("Exception found in get state ={}", e.getMessage());
+			log.info("Exception found in fet details ={}", e.getMessage());
 		}
+
 		return null;
 	}
 
